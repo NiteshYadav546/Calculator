@@ -1,235 +1,215 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:            #0f0f13;
-  --surface:       #1a1a22;
-  --panel:         #22222e;
-  --border:        #2e2e3e;
-  --accent:        #7c6af7;
-  --accent-glow:   rgba(124, 106, 247, 0.25);
-  --operator:      #f97316;
-  --operator-glow: rgba(249, 115, 22, 0.20);
-  --text-primary:  #f0f0f5;
-  --text-secondary:#8888aa;
-  --text-dim:      #55556a;
+  --bg:            #08080a;
+  --surface:       rgba(26, 26, 34, 0.85);
+  --panel:         rgba(34, 34, 46, 0.6);
+  --border:        rgba(255, 255, 255, 0.08);
+  --accent:        #8b5cf6;
+  --accent-glow:   rgba(139, 92, 246, 0.3);
+  --operator:      #fb923c;
+  --operator-glow: rgba(251, 146, 60, 0.2);
+  --text-primary:  #ffffff;
+  --text-secondary:#94a3b8;
+  --text-dim:      #64748b;
   --display-font:  'JetBrains Mono', monospace;
   --ui-font:       'Inter', sans-serif;
-  --radius:        16px;
-  --btn-radius:    12px;
-  --transition:    0.12s ease;
+  --radius:        24px;
+  --btn-radius:    16px;
+  --transition:    0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
   background: var(--bg);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(251, 146, 60, 0.1) 0px, transparent 50%);
   font-family: var(--ui-font);
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  color: var(--text-primary);
 }
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 50% 40%,
-    rgba(124,106,247,0.07) 0%, transparent 70%);
-  pointer-events: none;
-}
-
 
 .calculator {
   background: var(--surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border);
-  border-radius: 24px;
-  width: 340px;
+  border-radius: var(--radius);
+  width: 360px;
   overflow: hidden;
   box-shadow:
-    0 0 0 1px rgba(255,255,255,0.04) inset,
-    0 32px 80px rgba(0,0,0,0.6),
-    0 0 60px var(--accent-glow);
+    0 0 0 1px rgba(255,255,255,0.05) inset,
+    0 25px 50px -12px rgba(0, 0, 0, 0.5);
   position: relative;
   z-index: 1;
 }
 
-
 .display {
   background: var(--panel);
-  padding: 28px 24px 20px;
+  padding: 32px 28px 24px;
   border-bottom: 1px solid var(--border);
-  min-height: 130px;
+  min-height: 160px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: 6px;
+  gap: 8px;
 }
 
 .display-history {
   font-family: var(--display-font);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-dim);
-  min-height: 18px;
+  min-height: 20px;
   text-align: right;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  opacity: 0.8;
 }
 
 .display-expression {
   font-family: var(--display-font);
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-secondary);
-  min-height: 22px;
+  min-height: 24px;
   text-align: right;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .display-value {
   font-family: var(--display-font);
-  font-size: 44px;
-  font-weight: 700;
+  font-size: 48px;
+  font-weight: 600;
   color: var(--text-primary);
   text-align: right;
-  line-height: 1;
+  line-height: 1.1;
   letter-spacing: -0.02em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  transition: font-size var(--transition);
+  word-break: break-all;
+  transition: all var(--transition);
 }
-.display-value.shrink   { font-size: 30px; }
-.display-value.shrink-2 { font-size: 22px; }
-
 
 .buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  padding: 20px;
+  gap: 12px;
+  padding: 24px;
 }
 
 button {
   font-family: var(--ui-font);
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 500;
-  height: 64px;
-  border: none;
+  height: 68px;
+  border: 1px solid transparent;
   border-radius: var(--btn-radius);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition:
-    background var(--transition),
-    transform   var(--transition),
-    box-shadow  var(--transition);
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
+  transition: all var(--transition);
   position: relative;
-  outline: none;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-primary);
 }
-button:active { transform: scale(0.93); }
-button:focus-visible { box-shadow: 0 0 0 2px var(--accent); }
+
+button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(1px) scale(0.96);
+}
 
 .btn-num {
-  background: var(--panel);
-  color: var(--text-primary);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
 }
-.btn-num:hover { background: #2a2a38; border-color: #3a3a50; }
 
 .btn-fn {
-  background: #2c2c3e;
+  background: rgba(255, 255, 255, 0.08);
   color: var(--text-secondary);
-  border: 1px solid var(--border);
-  font-size: 15px;
 }
-.btn-fn:hover { background: #363650; }
 
 .btn-op {
-  background: rgba(249, 115, 22, 0.12);
+  background: rgba(251, 146, 60, 0.1);
   color: var(--operator);
-  border: 1px solid rgba(249, 115, 22, 0.25);
-  font-size: 20px;
+  font-size: 22px;
 }
+
 .btn-op:hover {
-  background: rgba(249, 115, 22, 0.22);
-  box-shadow: 0 0 16px var(--operator-glow);
+  background: rgba(251, 146, 60, 0.2);
+  border-color: rgba(251, 146, 60, 0.3);
 }
+
 .btn-op.active {
   background: var(--operator);
-  color: #fff;
+  color: white;
   box-shadow: 0 0 20px var(--operator-glow);
 }
 
 .btn-eq {
   background: var(--accent);
-  color: #fff;
-  font-size: 22px;
-  box-shadow: 0 4px 20px var(--accent-glow);
-}
-.btn-eq:hover {
-  background: #9080ff;
-  box-shadow: 0 6px 28px var(--accent-glow);
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+  box-shadow: 0 8px 16px -4px var(--accent-glow);
 }
 
-.btn-zero {
-  grid-column: span 2;
-  justify-content: flex-start;
-  padding-left: 26px;
-  font-size: 17px;
+.btn-eq:hover {
+  background: #9d71fd;
+  box-shadow: 0 12px 20px -4px var(--accent-glow);
+}
+
+.ripple {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
 }
 
 .footer {
-  padding: 12px 20px 18px;
-  border-top: 1px solid var(--border);
+  padding: 16px 24px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  border-top: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.1);
 }
-.footer-label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-}
+
 .keyboard-hint {
   font-size: 11px;
   color: var(--text-dim);
   display: flex;
   align-items: center;
-  gap: 4px;
-}
-.kbd {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 1px 5px;
-  font-family: var(--display-font);
-  font-size: 10px;
-  color: var(--text-secondary);
+  gap: 8px;
+  letter-spacing: 0.02em;
 }
 
-.ripple {
-  position: absolute;
-  border-radius: 50%;
-  transform: scale(0);
-  animation: ripple-anim 0.4s linear;
-  background: rgba(255,255,255,0.12);
-  pointer-events: none;
+.kbd {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: var(--display-font);
+  font-size: 10px;
 }
-@keyframes ripple-anim { to { transform: scale(4); opacity: 0; } }
 
 @media (prefers-reduced-motion: reduce) {
   button { transition: none; }
   .ripple { animation: none; }
 }
+
 @media (max-width: 380px) {
-  .calculator { width: 300px; }
-  .display-value { font-size: 36px; }
-  button { height: 56px; font-size: 15px; }
+  .calculator { width: 320px; }
+  .display-value { font-size: 38px; }
+  button { height: 60px; font-size: 16px; }
 }

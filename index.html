@@ -18,41 +18,37 @@
   </div>
 
   <div class="buttons">
-    <!-- Row 1 -->
-    <button class="btn-fn"  data-action="clear"    aria-label="All Clear">AC</button>
-    <button class="btn-fn"  data-action="sign"     aria-label="Toggle sign">±</button>
-    <button class="btn-fn"  data-action="percent"  aria-label="Percent">%</button>
-    <button class="btn-op"  data-action="operator" data-value="÷" aria-label="Divide">÷</button>
-    <!-- Row 2 -->
+    <button class="btn-fn" data-action="clear" aria-label="All Clear">AC</button>
+    <button class="btn-fn" data-action="backspace" aria-label="Backspace">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><line x1="18" y1="9" x2="12" y2="15"/><line x1="12" y1="9" x2="18" y2="15"/></svg>
+    </button>
+    <button class="btn-fn" data-action="percent" aria-label="Percent">%</button>
+    <button class="btn-op" data-action="operator" data-value="÷" aria-label="Divide">÷</button>
     <button class="btn-num" data-action="digit" data-value="7">7</button>
     <button class="btn-num" data-action="digit" data-value="8">8</button>
     <button class="btn-num" data-action="digit" data-value="9">9</button>
-    <button class="btn-op"  data-action="operator" data-value="×" aria-label="Multiply">×</button>
-    <!-- Row 3 -->
+    <button class="btn-op" data-action="operator" data-value="×" aria-label="Multiply">×</button>
     <button class="btn-num" data-action="digit" data-value="4">4</button>
     <button class="btn-num" data-action="digit" data-value="5">5</button>
     <button class="btn-num" data-action="digit" data-value="6">6</button>
-    <button class="btn-op"  data-action="operator" data-value="−" aria-label="Subtract">−</button>
-    <!-- Row 4 -->
+    <button class="btn-op" data-action="operator" data-value="−" aria-label="Subtract">−</button>
     <button class="btn-num" data-action="digit" data-value="1">1</button>
     <button class="btn-num" data-action="digit" data-value="2">2</button>
     <button class="btn-num" data-action="digit" data-value="3">3</button>
-    <button class="btn-op"  data-action="operator" data-value="+" aria-label="Add">+</button>
-    <!-- Row 5 -->
-    <button class="btn-num btn-zero" data-action="digit"   data-value="0" aria-label="0">0</button>
-    <button class="btn-num"          data-action="decimal" aria-label="Decimal point">.</button>
-    <button class="btn-eq"           data-action="equals"  aria-label="Equals">=</button>
+    <button class="btn-op" data-action="operator" data-value="+" aria-label="Add">+</button>
+    <button class="btn-fn" data-action="sign" aria-label="Toggle sign">±</button>
+    <button class="btn-num" data-action="digit" data-value="0" aria-label="0">0</button>
+    <button class="btn-num" data-action="decimal" aria-label="Decimal point">.</button>
+    <button class="btn-eq" data-action="equals" aria-label="Equals">=</button>
   </div>
 
   <div class="footer">
-    <span class="footer-label">Calculator Style</span>
-    <span class="keyboard-hint">
-      <kbd class="kbd">0–9</kbd> keyboard supported
-    </span>
+    <div class="keyboard-hint">
+      <kbd class="kbd">0–9</kbd> <kbd class="kbd">Enter</kbd> <kbd class="kbd">ESC</kbd> Supported
+    </div>
   </div>
 
 </div>
-
-      <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
